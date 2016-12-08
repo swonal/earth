@@ -289,7 +289,7 @@ public class DisplayFeeds extends AppCompatActivity implements ShakeEventManager
 
             publishProgress("Download Rss Feed and parse Successful \nGetting country code...");
             for (RssFeedItem magnit : rssItems) { //storing all magnitude in mag arraylist to be used to draw to canvas
-                mag.add(magnit.getMagnitude().substring(magnit.getMagnitude().indexOf(" "), magnit.getMagnitude().length()));
+                mag.add(magnit.getMagnitude().substring(magnit.getMagnitude().lastIndexOf(" "), magnit.getMagnitude().length()));
                 try {
                     Double lat = Double.parseDouble(magnit.getGeoLat());
                     Double lng = Double.parseDouble(magnit.getGeoLong());
@@ -306,7 +306,6 @@ public class DisplayFeeds extends AppCompatActivity implements ShakeEventManager
                         String cCode = mgr.findCountry(country);  //query the db to get the corresponding code for each country
                         drawableID = getResources().getIdentifier(cCode, "drawable", getPackageName()); //get the int for use to locate the pic in drawable
                     }
-
 
                 } catch (Exception e) {
                     e.printStackTrace();

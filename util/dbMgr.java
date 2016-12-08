@@ -222,7 +222,9 @@ public class dbMgr extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery(query, null);
+        Boolean rowExists;
 
+        rowExists = cursor.moveToFirst();
         String cCode = cursor.getString(2);
         cursor.close();
 
